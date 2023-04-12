@@ -201,7 +201,7 @@ public class ArrayList<T> implements List<T> {
      * @param elements the ArrayList whose elements to add
      */
 
-    private void addAll(ArrayList<T> elements) {
+    public void addAll(ArrayList<T> elements) {
         for (int i = 0; i < elements.size(); i++) {
             T element = elements.get(i);
             add(element);
@@ -213,7 +213,7 @@ public class ArrayList<T> implements List<T> {
      * Removes all elements from this ArrayList.
      */
 
-    private void clear() {
+    public void clear() {
         this.elements = (T[]) new Object[DEFAULT_SIZE];
         this.size = 0;
     }

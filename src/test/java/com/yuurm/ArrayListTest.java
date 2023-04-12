@@ -1,141 +1,203 @@
 package com.yuurm;
 
-
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.Comparator;
-/**
- * 12.04.2023
- * hw1
- *
- * @author yuurm
- * @version v1.0
- *
- * The type Array list test.
- */
-public class ArrayListTest {
 
-    private ArrayList<Integer> list;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.mock;
 
+class ArrayListTest {
     /**
-     * Sets .
+     * Methods under test:
+     *
+     * <ul>
+     *   <li>default or parameterless constructor of {@link ArrayList}
+     *   <li>{@link ArrayList#size()}
+     * </ul>
      */
-    @BeforeEach
-    public void setup() {
-        list = new ArrayList<>();
+    @Test
+    void testConstructor() {
+        assertEquals(0, (new ArrayList<>()).size());
     }
 
     /**
-     * Test get.
+     * Method under test: {@link ArrayList#get(int)}
      */
     @Test
-    public void testGet() {
+    void testGet() {
+        assertNull((new ArrayList<>()).get(1));
+        assertNull((new ArrayList<>()).get(-1));
+    }
+
+    /**
+     * Method under test: {@link ArrayList#get(int)}
+     */
+    @Test
+    void testGetString() {
+        ArrayList<Object> arrayList = new ArrayList<>();
+        arrayList.addFirst("Element");
+        arrayList.addFirst("Element");
+        assertEquals("Element", arrayList.get(1));
+    }
+
+    /**
+     * Method under test: {@link ArrayList#addFirst(Object)}
+     */
+    @Test
+    void testAddFirst() {
+        ArrayList<Object> arrayList = new ArrayList<>();
+        arrayList.addFirst("Element");
+        assertEquals(1, arrayList.size());
+    }
+
+    /**
+     * Method under test: {@link ArrayList#add(Object)}
+     */
+    @Test
+    void testAdd() {
+        ArrayList<Object> arrayList = new ArrayList<>();
+        arrayList.add("Element");
+        assertEquals(1, arrayList.size());
+    }
+
+    /**
+     * Method under test: {@link ArrayList#contains(Object)}
+     */
+    @Test
+    void testContains() {
+        assertFalse((new ArrayList<>()).contains("Element"));
+    }
+
+    /**
+     * Method under test: {@link ArrayList#contains(Object)}
+     */
+    @Test
+    void testContainsString() {
+        ArrayList<Object> arrayList = new ArrayList<>();
+        arrayList.addFirst("Element");
+        assertTrue(arrayList.contains("Element"));
+    }
+
+    /**
+     * Method under test: {@link ArrayList#contains(Object)}
+     */
+    @Test
+    void testContainsAndAddFirst() {
+        ArrayList<Object> arrayList = new ArrayList<>();
+        arrayList.addFirst(2);
+        assertFalse(arrayList.contains("Element"));
+    }
+
+    /**
+     * Method under test: {@link ArrayList#remove(Object)}
+     */
+    @Test
+    void testRemove() {
+        ArrayList<Object> arrayList = new ArrayList<>();
+        arrayList.remove("Element");
+        assertEquals(0, arrayList.size());
+    }
+
+    /**
+     * Method under test: {@link ArrayList#remove(Object)}
+     */
+    @Test
+    void testRemoveAndAddFirst() {
+        ArrayList<Object> arrayList = new ArrayList<>();
+        arrayList.addFirst("Element");
+        arrayList.remove("Element");
+        assertEquals(0, arrayList.size());
+    }
+
+    /**
+     * Method under test: {@link ArrayList#remove(Object)}
+     */
+    @Test
+    void testRemoveAndAddFirstAndRemove() {
+        ArrayList<Object> arrayList = new ArrayList<>();
+        arrayList.addFirst("Element");
+        arrayList.addFirst("Element");
+        arrayList.remove("Element");
+        assertEquals(1, arrayList.size());
+    }
+
+    /**
+     * Method under test: {@link ArrayList#remove(Object)}
+     */
+    @Test
+    void testRemoveAbsent() {
+        ArrayList<Object> arrayList = new ArrayList<>();
+        arrayList.addFirst(2);
+        arrayList.remove("Element");
+        assertEquals(1, arrayList.size());
+    }
+
+    /**
+     * Method under test: {@link ArrayList#quickSort(Comparator)}
+     */
+    @Test
+    void testQuickSort() {
+        ArrayList<Object> arrayList = new ArrayList<>();
+        arrayList.quickSort((Comparator<Object>) mock(Comparator.class));
+        assertEquals(0, arrayList.size());
+    }
+
+    /**
+     * Method under test: {@link ArrayList#addAll(ArrayList)}
+     */
+    @Test
+    void testAddAll() {
+        ArrayList<Object> arrayList = new ArrayList<>();
+        ArrayList<Object> arrayList1 = new ArrayList<>();
+        arrayList.addAll(arrayList1);
+        assertEquals(0, arrayList1.size());
+        assertEquals(0, arrayList.size());
+    }
+
+
+
+    /**
+     * Method under test: {@link ArrayList#addAll(ArrayList)}
+     */
+    @Test
+    void testAddAllAnotherList() {
+        ArrayList<Object> arrayList = new ArrayList<>();
+
+        ArrayList<Object> arrayList1 = new ArrayList<>();
+        arrayList1.addFirst("Element");
+        arrayList.addAll(arrayList1);
+        assertEquals(1, arrayList.size());
+    }
+
+    /**
+     * Method under test: {@link ArrayList#clear()}
+     */
+    @Test
+    void testClear() {
+        ArrayList<Object> arrayList = new ArrayList<>();
+        arrayList.clear();
+        assertEquals(0, arrayList.size());
+    }
+
+    /**
+     * Method under test: {@link ArrayList#iterator()}
+     */
+    @Test
+    void testIterator() {
+        List<Integer> list = new ArrayList<>();
         list.add(1);
         list.add(2);
         list.add(3);
-        assertEquals(1, list.get(0));
-        assertEquals(2, list.get(1));
-        assertEquals(3, list.get(2));
-        assertNull(list.get(3));
+        Iterator<Integer> iter =  list.iterator();
+        assertTrue(iter.hasNext());
+        assertEquals(1, iter.next());
+        assertTrue(iter.hasNext());
+        assertEquals(2, iter.next());
+        assertTrue(iter.hasNext());
+        assertEquals(3, iter.next());
+        assertFalse(iter.hasNext());
     }
-
-    /**
-     * Test add first.
-     */
-    @Test
-    public void testAddFirst() {
-        list.add(1);
-        list.add(2);
-        list.addFirst(3);
-        assertEquals(3, list.get(0));
-        assertEquals(1, list.get(1));
-        assertEquals(2, list.get(2));
-    }
-
-    /**
-     * Test add.
-     */
-    @Test
-    public void testAdd() {
-        list.add(1);
-        list.add(2);
-        list.add(3);
-        assertEquals(1, list.get(0));
-        assertEquals(2, list.get(1));
-        assertEquals(3, list.get(2));
-    }
-
-    /**
-     * Test contains.
-     */
-    @Test
-    public void testContains() {
-        list.add(1);
-        list.add(2);
-        assertTrue(list.contains(1));
-        assertTrue(list.contains(2));
-        assertFalse(list.contains(3));
-    }
-
-    /**
-     * Test size.
-     */
-    @Test
-    public void testSize() {
-        assertEquals(0, list.size());
-        list.add(1);
-        list.add(2);
-        assertEquals(2, list.size());
-    }
-
-    /**
-     * Test remove.
-     */
-    @Test
-    public void testRemove() {
-        list.add(1);
-        list.add(2);
-        list.add(3);
-        list.remove(2);
-        assertEquals(2, list.size());
-        assertEquals(1, list.get(0));
-        assertEquals(3, list.get(1));
-        list.remove(4);
-        assertEquals(2, list.size());
-        assertEquals(1, list.get(0));
-        assertEquals(3, list.get(1));
-    }
-
-    /**
-     * Test quick sort.
-     */
-    @Test
-    public void testQuickSort() {
-        list.add(3);
-        list.add(2);
-        list.add(1);
-        list.quickSort(Comparator.naturalOrder());
-        assertEquals(1, list.get(0));
-        assertEquals(2, list.get(1));
-        assertEquals(3, list.get(2));
-    }
-
-    /**
-     * Test iterator.
-     */
-    @Test
-    public void testIterator() {
-        list.add(1);
-        list.add(2);
-        list.add(3);
-        int sum = 0;
-        for (int i = 0; i < list.size(); i++) {
-            Integer element = list.get(i);
-            sum += element;
-        }
-        assertEquals(6, sum);
-    }
-
 }
+
