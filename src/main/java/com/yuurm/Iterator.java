@@ -10,16 +10,15 @@ package com.yuurm;
  */
 public interface Iterator<T> {
     /**
-     * перейти к следующему элементу
+     * go to the next element
      *
-     * @return элемент t
+     * @return element t
      */
     T next();
-
     /**
-     * проверить, есть ли следующий элемент
+     * check if there is a following element
      *
-     * @return true если следующий элемент есть, false - если следующего элемента нет
+     * @return true if there is a next item, false if there is no next item
      */
     boolean hasNext();
 }

@@ -7,32 +7,32 @@ package com.yuurm;
  * @author yuurm
  * @version v1.0
  *
- * Данный интерфейс подразумевает возможность сохранять элементы в каком-либо наборе
- * При этом порядок (кого и за кем добавили) элементов не играет роли
+ * This interface implies the ability to save items in any set
+ * The order (whom and after whom you added the items) does not play a role
  */
 public interface Collection<T> {
     /**
-     * Добавляет элемент в коллекцию
-     * @param element добавляемый элемент
+     * Adds element to the collection
+     * @param element to be added
      */
     void add(T element);
 
     /**
-     * Проверяет, есть ли элемент в коллекции
-     * @param element искомый элемент
-     * @return true, если элемент присутствует хотя бы один раз в коллекции
+     * Checks if the element is in the collection
+     * @param element is the item you are looking for
+     * @return true if element is present at least once in the collection
      */
     boolean contains(T element);
 
     /**
-     * Получаем количество элементов в коллекции
-     * @return возвращает число элементов
+     * Get the number of elements in the collection
+     * @return returns number of elements
      */
     int size();
 
     /**
-     * Удаляет первое вхождение элемента в список
-     * @param element удаляемый элемент
+     * Deletes the first occurrence of an element in the list
+     * @param element to be deleted
      */
     void remove(T element);
 
