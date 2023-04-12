@@ -20,5 +20,10 @@ public interface List<T> extends Collection<T> {
      */
     T get(int index);
 
+    /**
+     * Inserts the specified element at the beginning of this list.
+     * @param element
+     */
+
     void addFirst(T element);
 }

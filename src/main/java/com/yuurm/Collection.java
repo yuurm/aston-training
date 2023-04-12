@@ -36,5 +36,12 @@ public interface Collection<T> {
      */
     void remove(T element);
 
+
+    /**
+     *
+     * Returns an iterator over the elements in Collection.
+     * @return an iterator over the elements in Collection
+     */
+
     Iterator<T> iterator();
 }

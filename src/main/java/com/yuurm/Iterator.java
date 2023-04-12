@@ -4,7 +4,9 @@ package com.yuurm;
  * 12.04.2023
  * hw1
  *
- * @param <T> the type parameter
+ * An iterator over a collection of elements of type T.
+ *
+ * @param <T> the type of elements returned by this iterator
  * @author yuurm
  * @version v1.0
  */
