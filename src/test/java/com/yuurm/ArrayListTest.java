@@ -115,7 +115,7 @@ class ArrayListTest {
      * Method under test: {@link ArrayList#remove(Object)}
      */
     @Test
-    void testRemoveAndAddFirstAndRemove() {
+    void testRemoveAndAddFirstString() {
         ArrayList<Object> arrayList = new ArrayList<>();
         arrayList.addFirst("Element");
         arrayList.addFirst("Element");
