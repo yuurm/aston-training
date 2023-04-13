@@ -25,7 +25,7 @@ class LinkedListTest {
      */
     @BeforeEach
     void setUp() {
-        list = new LinkedList<Integer>();
+        list = new LinkedList<>();
     }
 
     /**

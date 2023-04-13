@@ -165,7 +165,7 @@ public class ArrayList<T> implements List<T> {
      * @param comparator the comparator to use for the sorting
      */
 
-    public void quickSort(Comparator<T> comparator) {
+    /*public void quickSort(Comparator<T> comparator) {
         if (size() <= 1) {
             return;
         }
@@ -193,7 +193,39 @@ public class ArrayList<T> implements List<T> {
         addAll(less);
         addAll(equal);
         addAll(greater);
+    }*/
+
+    public void quickSort(Comparator<T> comparator) {
+        quickSort(0, size - 1, comparator);
     }
+
+    private void quickSort(int left, int right, Comparator<T> comparator) {
+        if (left < right) {
+            int pivotIndex = partition(left, right, comparator);
+            quickSort(left, pivotIndex - 1, comparator);
+            quickSort(pivotIndex + 1, right, comparator);
+        }
+    }
+
+    private int partition(int left, int right, Comparator<T> comparator) {
+        T pivot = elements[right];
+        int i = left - 1;
+        for (int j = left; j < right; j++) {
+            if (comparator.compare(elements[j], pivot) < 0) {
+                i++;
+                swap(i, j);
+            }
+        }
+        swap(i + 1, right);
+        return i + 1;
+    }
+
+    private void swap(int i, int j) {
+        T temp = elements[i];
+        elements[i] = elements[j];
+        elements[j] = temp;
+    }
+
 
     /**
      * dds all elements from the specified ArrayList to this ArrayList.
